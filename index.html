@@ -4,15 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Simulador de Sueldo Neto</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
-<button id="modoOscuroBtn" title="Activar modo oscuro">🌙</button>
 <body>
+  <button id="modoOscuroBtn" title="Activar modo oscuro">🌙</button>
+
   <div class="container">
     
-    <header class="header">
-      <h1>Simulador de Sueldo Neto</h1>
+    <header class="header" style="display:flex;align-items:center;gap:10px;justify-content:center;">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo sueldo" width="38" height="38" style="border-radius:8px;box-shadow:0 2px 8px #0002;" aria-hidden="true" />
+      <h1 style="margin:0;">Simulador de Sueldo Neto</h1>
     </header>
 
     <form id="formulario" novalidate>
@@ -20,17 +24,37 @@
       <input type="number" id="sueldoBruto" step="any" required />
       <small class="error" id="errorInput"></small>
 
-      <fieldset class="opcionesExtra">
-        <legend>Descuentos Opcionales</legend>
-        <label>
-          <input type="checkbox" id="prepaga" />
-          Obra social prepaga (2%)
+      <fieldset class="opcionesExtra" aria-labelledby="descuentosOpcionales">
+        <legend id="descuentosOpcionales">Descuentos Opcionales</legend>
+        <label style="display:flex;align-items:center;gap:6px;">
+          <input type="checkbox" id="prepaga" aria-describedby="ayudaPrepaga" />
+          Obra social prepaga
+          <span tabindex="0" aria-label="¿Qué es la prepaga?" class="tooltip-ayuda" style="cursor:pointer;">ℹ️
+            <span class="tooltip-text" id="ayudaPrepaga">Adicional sobre la obra social obligatoria, según plan elegido.</span>
+          </span>
+          <select id="prepagaPorc" disabled style="margin-left:8px;">
+            <option value="0.02">2%</option>
+            <option value="0.03">3%</option>
+            <option value="0.04">4%</option>
+          </select>
         </label>
-        <label>
-          <input type="checkbox" id="sindicato" />
-          Sindicato (1.5%)
+        <label style="display:flex;align-items:center;gap:6px;">
+          <input type="checkbox" id="sindicato" aria-describedby="ayudaSindicato" />
+          Sindicato
+          <span tabindex="0" aria-label="¿Qué es el sindicato?" class="tooltip-ayuda" style="cursor:pointer;">ℹ️
+            <span class="tooltip-text" id="ayudaSindicato">Aporte gremial, varía según convenio colectivo.</span>
+          </span>
+          <select id="sindicatoPorc" disabled style="margin-left:8px;">
+            <option value="0.02">2%</option>
+            <option value="0.03">3%</option>
+            <option value="0.01">1%</option>
+          </select>
         </label>
       </fieldset>
+
+      <div id="piechart-container" style="margin: 18px auto 0; max-width: 350px; display: none;">
+        <canvas id="piechart" width="350" height="220" aria-label="Gráfico de descuentos" role="img"></canvas>
+      </div>
 
       <div class="buttons">
         <button type="submit" id="btnCalcular" disabled>Calcular</button>

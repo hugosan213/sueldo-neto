@@ -1,3 +1,76 @@
+/* Tooltip ayuda */
+.tooltip-ayuda {
+  position: relative;
+  display: inline-block;
+}
+.tooltip-ayuda .tooltip-text {
+  visibility: hidden;
+  width: 210px;
+  background: #1e293b;
+  color: #fff;
+  text-align: left;
+  border-radius: 8px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 20;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 16px #0003;
+}
+.tooltip-ayuda:focus .tooltip-text,
+.tooltip-ayuda:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Feedback visual en inputs */
+input[type='number']:valid {
+  border-color: #10b981;
+  box-shadow: 0 0 8px #10b98144;
+}
+input[type='number']:invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 8px #ef444444;
+}
+
+/* Animaciones suaves */
+.resultado,
+#grafico,
+#piechart-container {
+  transition: opacity 0.5s, transform 0.5s;
+}
+.resultado.visible,
+#grafico[style*='block'],
+#piechart-container[style*='block'] {
+  opacity: 1;
+  transform: translateY(0);
+}
+.resultado,
+#grafico,
+#piechart-container {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Favicon y detalles visuales */
+@media (min-width: 700px) {
+  .container {
+    box-shadow: 0 25px 60px #0002;
+    border: 1.5px solid #e5e7eb;
+  }
+}
+
+/* Pie chart responsive */
+#piechart {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
 /* Botón modo oscuro en esquina superior derecha */
 #modoOscuroBtn {
   position: absolute;
