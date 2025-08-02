@@ -7,13 +7,30 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
+<button id="modoOscuroBtn" title="Activar modo oscuro">🌙</button>
 <body>
   <div class="container">
-    <h1>Simulador de Sueldo Neto</h1>
+    
+    <header class="header">
+      <h1>Simulador de Sueldo Neto</h1>
+    </header>
+
     <form id="formulario" novalidate>
       <label for="sueldoBruto">Sueldo Bruto ($):</label>
       <input type="number" id="sueldoBruto" step="any" required />
       <small class="error" id="errorInput"></small>
+
+      <fieldset class="opcionesExtra">
+        <legend>Descuentos Opcionales</legend>
+        <label>
+          <input type="checkbox" id="prepaga" />
+          Obra social prepaga (2%)
+        </label>
+        <label>
+          <input type="checkbox" id="sindicato" />
+          Sindicato (1.5%)
+        </label>
+      </fieldset>
 
       <div class="buttons">
         <button type="submit" id="btnCalcular" disabled>Calcular</button>
@@ -22,8 +39,17 @@
     </form>
 
     <div id="resultado" class="resultado"></div>
+
+    <canvas id="grafico" width="400" height="200" style="display: none;"></canvas>
+
+    <div class="pdf-container">
+      <button id="btnPDF" style="display: none;">📁 Descargar PDF</button>
+    </div>
   </div>
 
+  <!-- Librerías externas -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

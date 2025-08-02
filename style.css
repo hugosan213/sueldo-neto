@@ -1,3 +1,62 @@
+/* Botón modo oscuro en esquina superior derecha */
+#modoOscuroBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 10;
+  background: transparent;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #1e293b;
+  padding: 0 6px;
+}
+#modoOscuroBtn:hover {
+  color: #3b82f6;
+}
+.oscuro #modoOscuroBtn {
+  color: #f3f4f6;
+}
+/* Modo oscuro */
+body.oscuro {
+  background: linear-gradient(135deg, #18181b, #27272a);
+  color: #f3f4f6;
+}
+.oscuro .container {
+  background: #23272f;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+.oscuro h1, .oscuro label, .oscuro legend {
+  color: #f3f4f6;
+}
+.oscuro input[type='number'],
+.oscuro fieldset {
+  background: #18181b;
+  color: #f3f4f6;
+  border-color: #52525b;
+}
+.oscuro .resultado {
+  background: #18181b !important;
+  color: #f3f4f6 !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+.oscuro button {
+  background: linear-gradient(90deg, #334155, #1e293b) !important;
+  color: #f3f4f6;
+}
+.oscuro #btnCalcular:disabled {
+  background: #64748b !important;
+  color: #cbd5e1;
+}
+.oscuro #btnCalcular:hover:not(:disabled),
+.oscuro #btnLimpiar:hover {
+  background: linear-gradient(90deg, #1e293b, #0f172a) !important;
+}
+.oscuro .error {
+  color: #f87171;
+}
+
 body {
   font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #e2e8f0, #ffffff);
@@ -19,6 +78,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
   transition: box-shadow 0.3s ease;
+  position: relative;
 }
 
 .container:hover {
@@ -155,15 +215,32 @@ button {
 /* Responsive */
 @media (max-width: 480px) {
   .container {
-    padding: 25px 20px;
+    padding: 18px 5px;
+    max-width: 98vw;
+    min-width: unset;
   }
-
   button {
     font-size: 1rem;
     padding: 12px 0;
   }
-
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+  }
+  .resultado {
+    font-size: 1rem;
+    padding: 10px;
+    min-height: 60px;
+  }
+  input[type='number'] {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #grafico {
+    width: 100% !important;
+    height: 140px !important;
   }
 }
